@@ -9,9 +9,14 @@ const TodoSlice=createSlice({
         insert:(state,actions)=>{
             console.log(actions.payload)
             state.todolist.push(actions.payload)
+        },
+        mydelete:(state,actions)=>{
+            console.log(actions.payload)
+            state.todolist=state.todolist.filter(e=>console.log(e.id==actions.payload))
+           
         }
     }
 })
 
-export const {insert} =TodoSlice.actions
+export const {insert,mydelete} =TodoSlice.actions
 export default TodoSlice.reducer;

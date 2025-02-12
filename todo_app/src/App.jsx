@@ -5,7 +5,7 @@ import { GiNotebook } from "react-icons/gi";
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 
-import { insert } from "./TodoSlice";
+import { insert,mydelete } from "./TodoSlice";
 
 function App() {
  
@@ -37,7 +37,7 @@ function App() {
         </h1>
         <div className="main_input">
           <input type="text"  value={input} onChange={(e)=>{setinput(e.target.value)}} />
-          <button onClick={()=>{dispatch(insert(input))}}> Add</button>
+          <button onClick={()=>{dispatch(insert({status:true,task:input,id:Date.now()}))}}> Add</button>
         </div>
       </div>
       <div className="display">
@@ -49,12 +49,13 @@ function App() {
                       width: "20px",
                       height: "20px",
                       cursor: "pointer",
-                      accentColor: "red"}} />
-                  <p> {e}</p>
+                      accentColor: "red",
+                      checked:true}} />
+                  <p> {e.task}</p>
               </div>
               <div className="button">
-                    <MdDeleteOutline onClick={()=>{myedit(index)}} />
-                    <MdOutlineEdit />
+                    <MdDeleteOutline onClick={()=>{dispatch(mydelete(e.id))}}/>
+                    <MdOutlineEdit   />
                   
 
               </div>
